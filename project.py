@@ -4,7 +4,7 @@ app = Flask(__name__)
 from sqlalchemy import create_engine, asc
 from sqlalchemy.orm import sessionmaker
 from database_setup import Base, Restaurant, MenuItem
-from secrets import CLIENT_ID
+from secrets import CLIENT_ID as id
 
 #import session
 from flask import session as login_session
@@ -23,8 +23,8 @@ session = DBSession()
 def showLogin():
   state = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in xrange(32))
   login_session['state'] = state
-  client_id = 'CLIENT_ID'
-  return render_template('login.html', STATE=state, value=client_id)
+  # client_id = id
+  return render_template('login.html', STATE=state, value=id)
 
 #JSON APIs to view Restaurant Information
 @app.route('/restaurant/<int:restaurant_id>/menu/JSON')
